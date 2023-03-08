@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -1p | sort -df | sed -e 's/^\.\{1,2\}$/&\//' | tr '\n' ',' && echo
+ls -Xpma
