@@ -1,2 +1,2 @@
 #!/bin/bash
-sort -V . | tail -n10
+sort -V . | tail -n10 | sort -r
