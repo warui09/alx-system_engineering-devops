@@ -6,12 +6,12 @@ do
 if [ $x -eq 4 ]; then
 echo "bad luck"
 ((x++))
-fi
-if [ $x -eq 8 ]; then
+elif [ $x -eq 8 ]; then
 echo "good luck"
 ((x++))
-fi
+else
 echo "Best School"
 ((x++))
+fi
 done
 
