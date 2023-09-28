@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Displays the contents of the current directory in list form
+for i in *; do echo "$i"; done
