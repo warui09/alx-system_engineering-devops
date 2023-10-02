@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Displays text indefinitely
+
+# SIGTERM handler
+sigterm_handler()
+{
+	echo "I am invincible!!!"
+}
+
+# Register the SIGTERM signal handler
+trap 'sigterm_handler' SIGTERM
+
+while true; do
+	echo "To infinity and beyond"
+	sleep 2
+done
