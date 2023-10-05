@@ -1,5 +1,3 @@
 #/usr/bin/env bash
 # Listens on port 98 on localhost
-
-# Install telnet if it doesn't exist
 netcat -l localhost 98 
