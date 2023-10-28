@@ -1,1 +1,34 @@
+Link to screenshot of the solution to 0-simple_web_stack
+
 https://imgur.com/a/PGB1tv0
+
+Explanation
+
+1. When a user types www.foobar.com in their browser the DNS server that their browser
+is configured to send a request to is tasked with resolving the domain name. The DNS
+server looks up the IP address of www.foobar.com in its cache, or requests from another
+DNS server if it does not have the address.
+
+2. The DNS server responds with the IP address of www.foobar.com in this case 8.8.8.8
+
+3. The user's browser then sends a request to 8.8.8.8
+
+4. If the server can fulfill the user's request with a static page the web server
+(Nginx) sends a response to the user.
+If not the application server dynamically generates the response as laid out
+by the business logic residing in the codebase and the data in the database.
+
+5. The protocol that enables the communication between the user's device and
+the server is HTTP or HTTPS
+
+6. The "www" in "www.foobar.com" is a CNAME record.
+
+
+Issues with the above infrastructure
+
+1. Single Point of Failure
+There is only one server to handle the incoming traffic. This means the web
+site www.foobar.com is unavailable due to planned or unplanned down time.
+
+2. The layout is not scallable if the site receives more traffic than the
+server can handle.
