@@ -19,7 +19,7 @@ If not the application server dynamically generates the response as laid out
 by the business logic residing in the codebase and the data in the database.
 
 5. The protocol that enables the communication between the user's device and
-the server is HTTP or HTTPS
+the server is HTTP
 
 6. The "www" in "www.foobar.com" is a CNAME record.
 
