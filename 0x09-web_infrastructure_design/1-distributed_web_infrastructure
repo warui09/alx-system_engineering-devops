@@ -14,7 +14,7 @@ The Load balancer uses the Round Robin algorithm because the two servers are
 similar in resorces and this is a good algorithm to ensure that both servers
 are utilized uniformly.
 This set up is Active-Active because both servers are being used  simultaneously
-as oppoed to the Active-Passive set up where one server handles the load while
+as opposed to the Active-Passive set up where one server handles the load while
 the other one is on stand-by.
 
 In one server the database instance is the master, this is where any changes to
