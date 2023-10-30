@@ -1,3 +1,28 @@
 Link to screenshot
 
 https://imgur.com/a/OHGp76T
+
+In this design I added 1 server and a Load balancer to control the web traffic.
+
+The web server has:
+1 web server (Nginx)
+1 application server
+1 set of code files
+1 database instance
+
+The Load balancer uses the Round Robin algorithm because the two servers are
+similar in resorces and this is a good algorithm to ensure that both servers
+are utilized uniformly.
+This set up is Active-Active because both servers are being used  simultaneously
+as oppoed to the Active-Passive set up where one server handles the load while
+the other one is on stand-by.
+
+In one server the database instance is the master, this is where any changes to
+the database are writen and then replicated in the replica instance. This server
+is the master node while the server with the replica database instance is the
+replica node.
+
+Issues
+The Load balancer is a single point of failure.
+The infrastructure is using HTTP and there are no firewalls so it is quite insecure
+There is also no monitoring
