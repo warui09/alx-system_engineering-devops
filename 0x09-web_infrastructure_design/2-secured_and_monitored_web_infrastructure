@@ -1,0 +1,33 @@
+Link to screenshot
+
+https://imgur.com/a/EBsy6JK
+
+I have added the following:
+3 firewalls, one for each server and one for the load balancer
+The firewalls add a layer of security by only allowing authorized packets into
+or out of the servers and the load balancer
+
+1 SSL certificate
+The SSL certificate enables www.foobar.com to use HTTPS. This encrypts all the
+traffic between users and the backend.
+
+3 monitoring clients, one for each serer and one to monitor all the traffic
+comming in through the load balancer
+
+A monitoring client can be placed infront of the database to monitor the queries
+per second being made.
+
+Issues
+1. Terminating SSL at the load balancer raises these issues:
+- The communication between the load balancer and the servers is unencrypted
+- Increased load on the load balancer
+- Difficulties with monitoring becauses the client's ip addres may not be preserved
+
+2. Having one MySQL server for accepting writes can cause loss of performance
+because the server acts as a bottle neck. To mitigate this several database
+instances can be configured to accept writes.
+
+3. This infrastructure design has all the same components, this problematic because:
+- These components are a SPOF, if one fails it takes out the entire server cluster
+- If one component is slower than the others this may cause the server resources
+to be under utilized 
