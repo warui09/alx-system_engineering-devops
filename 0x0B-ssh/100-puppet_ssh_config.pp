@@ -3,10 +3,15 @@
 
 file {'etc/ssh/ssh_config':
   ensure  => file,
-  content => "
-Host *
-  IdentityFile ~/.ssh/school
-  PasswordAuthentication no
-",
-  mode    => '0644',
 }
+
+file_line {'IdentityFile':
+  path      => 'etc/ssh/ssh_config',
+  file_line => 'IdentityFile ~/.ssh/school',
+}
+
+file_line {'NoPassword':
+  path      => 'etc/ssh/ssh_config',
+  file_line => 'PasswordAuthentication no',
+}
+
