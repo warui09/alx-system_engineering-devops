@@ -8,10 +8,12 @@ file {'etc/ssh/ssh_config':
 file_line {'IdentityFile':
   path      => 'etc/ssh/ssh_config',
   file_line => 'IdentityFile ~/.ssh/school',
+  match     => '^IdentityFile',
 }
 
 file_line {'NoPassword':
   path      => 'etc/ssh/ssh_config',
   file_line => 'PasswordAuthentication no',
+  match     => '^PasswordAuthentication',
 }
 
