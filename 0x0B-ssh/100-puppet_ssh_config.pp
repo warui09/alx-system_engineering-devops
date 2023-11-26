@@ -2,7 +2,7 @@
 # use Puppet to make changes to ssh configuration file
 
 file {'/etc/ssh/ssh_config':
-  ensure  => file,
+  ensure  => present,
 }
 
 file_line {'IdentityFile':
