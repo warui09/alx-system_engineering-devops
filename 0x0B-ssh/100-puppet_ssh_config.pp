@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
 # use Puppet to make changes to ssh configuration file
-
 file {'/etc/ssh/ssh_config':
   ensure  => present,
 }
@@ -16,4 +14,3 @@ file_line {'NoPassword':
   file_line => 'PasswordAuthentication no',
   match     => '^PasswordAuthentication',
 }
-
