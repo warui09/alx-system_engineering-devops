@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Shares SSH client configuration
+ssh -A ubuntu@311130-web-01
+echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config
