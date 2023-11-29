@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
-# installs nginx
+# installs NGINX
 sudo apt update -y
 sudo apt install nginx -y
+
+# Start the server
+sudo service nginx start
+
+# Append server block to NGINX configuration
+echo 'server {
+  listen 80;
+  location / {
+    return 200 "Hello World!";
+  }
+}' | sudo tee -a /etc/nginx/conf.d/example.conf
+
+# Restart NGINX to apply changes
+sudo service nginx restart
