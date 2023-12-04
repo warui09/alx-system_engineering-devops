@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Install Nginx if not already installed
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Path to the nginx configuration file
+nginx_config="/etc/nginx/sites-available/default"
+
+# Define redirection path and target URL
+redirection_path="/redirect_me"
+target_url="https://www.youtube.com/watch?v=QH2-TGUlwu4"
+
+# Check if the file is writable
+if [[ -w $nginx_config ]]; then
+    # Backup the original configuration file
+    sudo cp $nginx_config "${nginx_config}.bak"
+
+    # Replace existing location block with a new one for the redirection
+    sudo sed -i "/location \/ {/a \\
+        location $redirection_path {\\
+            return 301 $target_url;\\
+        }" $nginx_config
+
+    # Restart nginx to apply the changes
+    sudo service nginx restart
+
+    echo "Nginx configured for redirection: $redirection_path -> $target_url"
+else
+    echo "Error: $nginx_config is not writable. Please run the script with appropriate permissions."
+fi
