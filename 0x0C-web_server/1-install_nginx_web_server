@@ -6,13 +6,37 @@ sudo apt install nginx -y
 # Start the server
 sudo service nginx start
 
-# Append server block to NGINX configuration
-echo 'server {
-  listen 80;
-  location / {
-    return 200 "Hello World!";
-  }
-}' | sudo tee -a /etc/nginx/conf.d/example.conf
+# String to return
+response_string="Hello World!\n"
 
-# Restart NGINX to apply changes
-sudo service nginx restart
+# Path to the nginx configuration file
+nginx_config="/etc/nginx/sites-available/default"
+
+# Check if file is writable
+if [[ -w $nginx_config ]]; then
+    # Backup the original configuration file
+    sudo cp $nginx_config "${nginx_config}.bak"
+
+    # Update the configuration file to return the specified string
+    sudo bash -c "echo '
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        return 200 \"$response_string\";
+    }
+}' > $nginx_config"
+
+    # Restart nginx to apply the changes
+    sudo service nginx restart
+
+    echo "nginx configured to return: $response_string"
+else
+    echo "Error: $nginx_config is not writable. Please run the script with appropriate permissions."
+fi
