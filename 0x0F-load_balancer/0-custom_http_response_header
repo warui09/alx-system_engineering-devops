@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Install NGINX
+sudo apt update -y
+sudo apt install nginx -y
+
+# Start the server
+sudo service nginx start
+
+# String to return
+response_string="Hello World!\n"
+
+# Path to the Nginx configuration file
+nginx_config="/etc/nginx/sites-available/default"
+
+# Custom header configuration
+custom_header="add_header X-Served-By \$hostname;"
+
+# Check if the file is writable
+if [[ -w $nginx_config ]]; then
+    # Backup original configuration file
+    sudo cp $nginx_config "${nginx_config}.bak"
+
+    # Update configuration file to include the custom header
+    sudo sed -i "/location \/ {/a \\
+        $custom_header" $nginx_config
+
+    # Restart Nginx to apply the changes
+    sudo service nginx restart
+
+    echo "Nginx configured to return: $response_string"
+    echo "Custom header X-Served-By added to the Nginx configuration."
+else
+    echo "Error: $nginx_config is not writable. Please run the script with appropriate permissions."
+fi
