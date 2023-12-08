@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Display information about subdomains under
+
+show_status() {
+	if [ -z "$2" ]; then
+		dig "www.$1" | awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
+		dig "lb-01.$1" | awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
+		dig "web-01.$1" | awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
+		dig "web-02.$1" awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
+	else
+		dig "$2.$1" | awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
+	fi
+}
+
+show_status "$1" "$2"
