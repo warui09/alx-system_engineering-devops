@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
-# Display information about subdomains under
+# Display information about subdomains under warui09.tech
 
 show_status() {
+	get_domain_info() {
+		local sub_domain="$1"
+		local domain="$2"
+		dig "$sub_domain.$domain" | awk '/ANSWER SECTION:/ { getline; print "The subdomain '"$sub_domain"' is a " $4 " record and points to " $5 }'
+	}
+
 	if [ -z "$2" ]; then
-		dig "www.$1" | awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
-		dig "lb-01.$1" | awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
-		dig "web-01.$1" | awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
-		dig "web-02.$1" awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
+		get_domain_info "www" "$1"
+		get_domain_info "lb-01" "$1"
+		get_domain_info "web-01" "$1"
+		get_domain_info "web-02" "$1"
 	else
-		dig "$2.$1" | awk '/ANSWER SECTION:/ { getline; print "The subdomain lb-01 is a " $4 " record and points to " $5 }'
+		get_domain_info "$2" "$1"
 	fi
 }
 
