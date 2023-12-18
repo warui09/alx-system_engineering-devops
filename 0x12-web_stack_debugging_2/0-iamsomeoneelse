@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# run a program as another user
+command=whoami
+if [[ $1 ]]; then
+	runuser -u user -- $command
+else
+	$command
+fi
