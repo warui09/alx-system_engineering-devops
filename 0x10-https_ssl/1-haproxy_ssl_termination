@@ -22,11 +22,21 @@ defaults
     option http-server-close
 
 frontend http_front
-    bind *:443 ssl crt /etc/letsencrypt/live/www.warui09.tech/fullchain.pem
+    bind *:80
     stats uri /haproxy?stats
+    default_backend http_back
+
+frontend www_https
+    bind *:443 ssl crt /etc/haproxy/certs/www.warui09.tech.pem
+    reqadd X-Forwarded-Proto:\ https
+    acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+    use_backend letsencrypt-backend if letsencrypt-acl
     default_backend http_back
 
 backend http_back
     balance roundrobin
-    server 311130-web-01 174.129.55.61:80 check
+    server 311130-web-01 54.237.60.175:80 check
     server 311130-web-02 100.26.175.71:80 check
+
+backend letsencrypt-backend
+    server letsencrypt 127.0.0.1:54321
