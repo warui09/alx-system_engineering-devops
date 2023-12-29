@@ -1,4 +1,6 @@
-#!/usr/bin/bash
+#!/usr/bin/env bas
+# Generates a MySQL dump and creates a compressed archive out of it
+
 # Check if password argument is provided
 
 if [ -z "$1" ]; then
