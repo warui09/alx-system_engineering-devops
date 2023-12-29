@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+# Check if password argument is provided
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <mysql_password>"
+    exit 1
+fi
+
+# Set password for MySQL root user
+MYSQL_PASSWORD="$1"
+
+# Set current date as archive name
+CURRENT_DATE=$(date +"%d-%m-%Y")
+ARCHIVE_NAME="$CURRENT_DATE.tar.gz"
+
+# MySQL dump command
+mysqldump -u root -p"$MYSQL_PASSWORD" --all-databases > backup.sql
+
+# Check if mysqldump command was successful
+if [ $? -eq 0 ]; then
+    # Create tar archive
+    tar -czf "$ARCHIVE_NAME" backup.sql
+
+    # Remove sql dump file
+    rm backup.sql
+
+    echo "Backup completed successfully. Archive: $ARCHIVE_NAME"
+else
+    echo "Error: MySQL dump failed."
+fi
