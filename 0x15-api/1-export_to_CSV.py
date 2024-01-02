@@ -15,7 +15,7 @@ if __name__ == "__main__":
         url = "https://jsonplaceholder.typicode.com/"
 
         name = requests.get(f"{url}users/{user_id}").json()["name"]
-        user_name = name.split(" ")[0]
+        user_name = name.split(" ")[1]
 
         url_tasks = f"{url}users/{user_id}/todos"
 
