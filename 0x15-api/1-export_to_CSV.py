@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
         with open(f"{user_id}.csv", "w") as csv_file:
             my_writer = csv.writer(csv_file, quotechar='"',
-                quoting=csv.QUOTE_MINIMAL)
+                            quoting=csv.QUOTE_MINIMAL)
             for task in all_tasks:
                 my_writer.writerow([user_id, user_name, task["completed"],
                 task["title"]])
