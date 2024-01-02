@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Returns information about Employee TODO list progress in the following
+"""Returns information about Employee TODO list progress in the following
     format:
 
 First line: Employee EMPLOYEE_NAME is done with
