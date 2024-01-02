@@ -16,10 +16,9 @@ Second and N next lines display the title of completed tasks:
 import requests
 import sys
 
-id = sys.argv[1]
-
 if __name__ == "__main__":
-    id = sys.argv[1]
+    if sys.argv[1]:
+        id = sys.argv[1]
 
     name = requests.get(f"https://jsonplaceholder.typicode.com/users/{id}").json()[
         "name"
