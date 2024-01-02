@@ -37,8 +37,9 @@ if __name__ == "__main__":
     done = len(completed_tasks)
     all_tasks = len(all_tasks)
 
-    table_format = "{:<10} {:<40}"
+    table_format = "{:4} {:<40}"
 
     print(f"Employee {name} is done with tasks({done}/{all_tasks}):")
     for todo in completed_tasks:
-        print(f"\t{todo['title']}")
+        print(f"{table_format.format('', todo['title'])}")
+
