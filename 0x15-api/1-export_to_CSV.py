@@ -8,22 +8,24 @@ import csv
 import requests
 import sys
 
-if sys.argv[1]:
-    user_id = sys.argv[1]
+if __name__ == "__main__":
+    if sys.argv[1]:
+        user_id = sys.argv[1]
 
-url = "https://jsonplaceholder.typicode.com/"
+        url = "https://jsonplaceholder.typicode.com/"
 
-name = requests.get(f"{url}users/{user_id}").json()["name"]
-user_name = name.split(" ")[0]
+        name = requests.get(f"{url}users/{user_id}").json()["name"]
+        user_name = name.split(" ")[0]
 
-url_tasks = f"{url}users/{user_id}/todos"
+        url_tasks = f"{url}users/{user_id}/todos"
 
-all_tasks = requests.get(url_tasks).json()
-task_list = []
+        all_tasks = requests.get(url_tasks).json()
 
+        task_list = []
 
-with open(f"{user_id}.csv", "w") as csv_file:
-    my_writer = csv.writer(csv_file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    for task in all_tasks:
-        my_writer.writerow([user_id, user_name, task["completed"],
-            task["title"]])
+        with open(f"{user_id}.csv", "w") as csv_file:
+            my_writer = csv.writer(csv_file, quotechar='"',
+                    quoting=csv.QUOTE_MINIMAL)
+            for task in all_tasks:
+                my_writer.writerow([user_id, user_name, task["completed"],
+                    task["title"]])
