@@ -6,19 +6,26 @@ import sys
 
 id = sys.argv[1]
 
-name = requests.get(f"https://jsonplaceholder.typicode.com/users/{id}").json()["name"]
+if __name__ == "__main__":
+    id = sys.argv[1]
 
-completed_tasks = []
-url_str = f"https://jsonplaceholder.typicode.com/users/{id}/todos"
-all_tasks = requests.get(url_str).json()
+    name = requests.get(f"https://jsonplaceholder.typicode.com/users/{id}").json()[
+        "name"
+    ]
 
-for _, todo in enumerate(all_tasks):
-    if todo["completed"]:
-        completed_tasks.append(todo)
+    completed_tasks = []
 
-done = len(completed_tasks)
-all_tasks = len(all_tasks)
+    url_str = f"https://jsonplaceholder.typicode.com/users/{id}/todos"
 
-print(f"Employee {name} is done with tasks({done}/{all_tasks})")
-for todo in completed_tasks:
-    print(f"\t{todo['title']}")
+    all_tasks = requests.get(url_str).json()
+
+    for _, todo in enumerate(all_tasks):
+        if todo["completed"]:
+            completed_tasks.append(todo)
+
+    done = len(completed_tasks)
+    all_tasks = len(all_tasks)
+
+    print(f"Employee {name} is done with tasks({done}/{all_tasks})")
+    for todo in completed_tasks:
+        print(f"\t{todo['title']}")
