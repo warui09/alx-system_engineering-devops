@@ -14,14 +14,11 @@ if __name__ == "__main__":
 
         url = "https://jsonplaceholder.typicode.com/"
 
-        name = requests.get(f"{url}users/{user_id}").json()["name"]
-        user_name = name.split(" ")[1]
+        user_name = requests.get(f"{url}users/{user_id}").json()["username"]
 
         url_tasks = f"{url}users/{user_id}/todos"
 
         all_tasks = requests.get(url_tasks).json()
-
-        task_list = []
 
         with open(f"{user_id}.csv", "w") as csv_file:
             my_writer = csv.writer(csv_file, quotechar='"',
