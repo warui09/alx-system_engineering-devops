@@ -42,4 +42,3 @@ if __name__ == "__main__":
     print(f"Employee {name} is done with tasks({done}/{all_tasks}):")
     for todo in completed_tasks:
         print(f"{table_format.format('', todo['title'])}")
-
