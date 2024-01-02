@@ -20,9 +20,8 @@ if __name__ == "__main__":
     if sys.argv[1]:
         id = sys.argv[1]
 
-    name = requests.get(f"https://jsonplaceholder.typicode.com/users/{id}").json()[
-        "name"
-    ]
+    name = requests.get(f"https://jsonplaceholder.typicode.com/users/{id}")\
+            .json()["name"]
 
     completed_tasks = []
 
@@ -37,6 +36,6 @@ if __name__ == "__main__":
     done = len(completed_tasks)
     all_tasks = len(all_tasks)
 
-    print(f"Employee {name} is done with tasks({done}/{all_tasks})")
+    print(f"Employee {name} is done with tasks({done}/{all_tasks}):")
     for todo in completed_tasks:
         print(f"\t{todo['title']}")
