@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-"""queries the Reddit API and returns a list containing the titles of all hot articles
-for a given subreddit"""
+"""queries the Reddit API and returns a list containing the titles of all hot
+articles for a given subreddit"""
 
 import requests
 
 
-def recurse(subreddit, hot_list=None, after=None):
+def recurse(subreddit, hot_list=None):
+    """queries the Reddit API and returns a list containing the titles of all
+    hot articles"""
     if hot_list is None:
         hot_list = []
 
@@ -13,8 +15,6 @@ def recurse(subreddit, hot_list=None, after=None):
     headers = {"User-agent": "Mozilla/5.0"}
 
     params = {}
-    if after:
-        params["after"] = after
 
     try:
         response = requests.get(
