@@ -1,6 +1,7 @@
 # BeiPoa Incident Report
 
 This is an incident report of the downtime experienced by BeiPoa users on Wednesday 17th January 2024. Some API endpoints were unresponsive and thus several services were unavailable, users got a 500 HTTP response. Here is a short list for the meaning of HTTP error codes that we hope the user will find useful.
+
 ![image](https://github.com/warui09/alx-system_engineering-devops/assets/93465580/cefff98e-af17-4f27-8426-ea67370d6ca6)
 
 ## Issue summary
