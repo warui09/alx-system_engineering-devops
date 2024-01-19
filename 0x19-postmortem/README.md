@@ -1,6 +1,6 @@
 # BeiPoa Incident Report
 
-This is an incident report of the downtime experienced by BeiPoa users on Wednesday 17th January 2024. Some API endpoints were unresponsive and thus several services were unavailable, users got a 500 HTTP response. Here is a short list for the meaning of HTTP error codes that we hope you will find useful.
+This is an incident report of the downtime experienced by BeiPoa users on Wednesday 17th January 2024. Some API endpoints were unresponsive and thus several services were unavailable, users got a 500 HTTP response. Here is a short list for the meaning of HTTP error codes that we hope the user will find useful.
 ![image](https://github.com/warui09/alx-system_engineering-devops/assets/93465580/cefff98e-af17-4f27-8426-ea67370d6ca6)
 
 ## Issue summary
@@ -26,6 +26,7 @@ From 11:36 PM to 01:48 AM East African time some requests to BeiPoa API endpoint
 The ORM library that connects the back-end code to the database was updated at 11:32 PM East African time. This update changed the config file and the app couldn't connect with the database. This being the source database, it handles all write requests and 50% of the read requests. These are the requests that returned an error message with HTTP code 500.
 Initially the problem was thought to be with the loadbalancer but examination of the log files showed this was not the case.
 This update should have been carried out in the testing environment first and later pushed to production. This image captures the essence of the events that transpired.
+
 ![image](https://github.com/warui09/alx-system_engineering-devops/assets/93465580/000626c8-a44d-4a03-8ce6-aca0ae36695d)
 
 
