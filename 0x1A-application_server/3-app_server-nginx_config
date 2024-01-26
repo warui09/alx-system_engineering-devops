@@ -1,0 +1,25 @@
+# Nginx is set up to run on the standard HTTP port and listen for requests
+
+server {
+  listen 80;
+  server_name 54.89.49.53 localhost;
+
+  # nginx should serve up static files and never send to the WSGI server
+  location /static {
+    autoindex on;
+  }
+
+  # custom header
+  add_header X-Served-By 311130-web-01;
+
+  # requests that do not fall under /static are passed on to the WSGI
+  # server that was specified above running on port 5000
+  location = /airbnb-onepage/ {
+    proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+  }
+
+  # serve /number_odd_or_even/<int>
+  location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+    proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
+  }
+}
